@@ -10,6 +10,6 @@ public class Board {
 
     }
     public void clear() {
-
+        deck.clear();
     }
 }

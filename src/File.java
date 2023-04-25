@@ -21,9 +21,11 @@ public class File {
             while (input.hasNextLine()) {
                 String[] currArr = input.nextLine().split(" ");
                 for (Card current : Deck.getDeck()) {
-                    if (current.getRank().equals(Character.toString(currArr[0].charAt(1))) || current.getRank().equals("*") || current.getSuit().equals(Character.toString(currArr[0].charAt(0))) || current.getSuit().equals("*")) {
+                    if(current.getPoint() != 1){
+                        continue;
+                    }
+                    if ((current.getSuit().equals(Character.toString(currArr[0].charAt(0)))  && current.getRank().equals(Character.toString(currArr[0].charAt(1)))) || (current.getSuit().equals(Character.toString(currArr[0].charAt(0))) && currArr[0].charAt(1) == '*' )  || (current.getRank().equals(Character.toString(currArr[0].charAt(1))) && currArr[0].charAt(0) == '*')) {
                         current.setPoint(Integer.parseInt(currArr[1]));
-                        break;
                     }
                 }
             }
