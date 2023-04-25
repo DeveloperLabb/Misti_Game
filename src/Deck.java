@@ -9,7 +9,7 @@ public class Deck {
     public Deck() {
         deckMake();
         Collections.shuffle(deck);
-        pullPoints();
+        //pullPoints();
     }
 
     public static ArrayList<Card> getDeck() {
