@@ -6,8 +6,13 @@ public class Main {
     public static Player regularBot = new RegularBot();
 
     public static void main(String[] args) {
-
         System.out.println(deck.getDeck());
-        System.out.println(regularBot);
+        deck.dealBoard();
+        System.out.println(deck.getDeck());
+        System.out.println(Board.getDeck());
+        deck.deal(human,expertBot);
+        human.printHand();
+        System.out.println();
+        expertBot.printHand();
     }
 }

@@ -38,5 +38,39 @@ public class Deck {
         cutDeck.addAll(deck.subList(0, cutPoint));
         deck=cutDeck;
     }
+    public void dealBoard(){
+        for(int i = 0;i<4;i++){
+            Board.getDeck().add(deck.get(0));
+            deck.remove(0);
+        }
+    }
+    public void deal(Player player,Player player1){
+        for(int i =0;i<4;i++){
+            player.hand.add(deck.get(0));
+            deck.remove(0);
+            player1.hand.add(deck.get(0));
+            deck.remove(0);
+        }
+    }
+    public void deal(Player player,Player player1,Player player2){
+        for(int i =0;i<4;i++){
+            player.hand.add(deck.get(0));
+            deck.remove(0);
+            player1.hand.add(deck.get(0));
+            deck.remove(0);
+            player2.hand.add(deck.get(0));
+            deck.remove(0);
 
+        }
+    }
+    public void deal(Player player,Player player1,Player player2,Player player3){
+        player.hand.add(deck.get(0));
+        deck.remove(0);
+        player1.hand.add(deck.get(0));
+        deck.remove(0);
+        player2.hand.add(deck.get(0));
+        deck.remove(0);
+        player3.hand.add(deck.get(0));
+        deck.remove(0);
+    }
 }

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public abstract class Player implements PlayerAPI{
     protected  ArrayList<Card> hand = new ArrayList<Card>();
     protected  ArrayList<Card> wonHand = new ArrayList<Card>();
-    protected  ArrayList<Card> mistHand = new ArrayList<Card>();
+    protected  ArrayList<Card> mistiHand = new ArrayList<Card>();
     protected String name;
     protected String surname;
     protected int score;
@@ -36,5 +36,10 @@ public abstract class Player implements PlayerAPI{
                 ", surname='" + surname + '\'' +
                 ", score=" + score +
                 '}';
+    }
+    public void printHand(){
+        for(Card card : hand){
+            System.out.println(card);
+        }
     }
 }

@@ -6,6 +6,6 @@ public class Human extends Player{
 
     @Override
     public void play() {
-
+        System.out.println("Human playing");
     }
 }
