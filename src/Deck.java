@@ -38,4 +38,5 @@ public class Deck {
         cutDeck.addAll(deck.subList(0, cutPoint));
         deck=cutDeck;
     }
+
 }

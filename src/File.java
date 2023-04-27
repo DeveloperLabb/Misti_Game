@@ -44,12 +44,4 @@ public class File {
             input.close();
         }
     }
-
-    /*
-    public static void readFile() {
-        while (input.hasNextLine()) {
-            System.out.println(input.nextLine());
-        }
-    }
-     */
 }

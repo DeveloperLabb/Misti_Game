@@ -1,16 +1,12 @@
-public class ExpertBot extends Player implements PlayerAPI{
+public class ExpertBot extends Player{
     @Override
     public void play() {
 
     }
 
-    @Override
-    public void calculateScore() {
-
-    }
-
-    @Override
-    public void printInfo() {
-        super.printInfo();
+    public ExpertBot() {
+        name="BOT";
+        surname="Eugene";
+        score=0;
     }
 }

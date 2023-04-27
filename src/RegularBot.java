@@ -1,16 +1,12 @@
-public class RegularBot extends Player implements PlayerAPI{
+public class RegularBot extends Player{
+    public RegularBot() {
+        name="BOT";
+        surname="George";
+        score=0;
+    }
+
     @Override
     public void play() {
 
-    }
-
-    @Override
-    public void calculateScore() {
-
-    }
-
-    @Override
-    public void printInfo() {
-        super.printInfo();
     }
 }
