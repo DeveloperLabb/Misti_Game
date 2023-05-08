@@ -1,15 +1,18 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Board {
-    private static ArrayList<Card> deck = new ArrayList<Card>();
+    private static LinkedList<Card> onBoard = new LinkedList<Card>();
 
-    public static ArrayList<Card> getDeck() {
-        return deck;
+    public static LinkedList<Card> getOnBoard() {
+        return onBoard;
     }
-    public void calculateScore() {
+    public static void calculateScore() {
 
     }
-    public void clear() {
-        deck.clear();
+    public static void clear() {
+        onBoard.clear();
+    }
+    public static void printInfo() {
+        System.out.println(onBoard);
     }
 }
