@@ -3,7 +3,7 @@ public class Main {
         Game game=new Game(3,1);
         game.start();
         game.printInfo();
-        game.deal();
+        game.play();
         game.printInfo();
     }
 }

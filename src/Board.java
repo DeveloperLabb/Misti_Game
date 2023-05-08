@@ -15,4 +15,5 @@ public class Board {
     public static void printInfo() {
         System.out.println(onBoard);
     }
+
 }

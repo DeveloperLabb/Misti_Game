@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class RegularBot extends Player{
     private static int numberOfRegularBot = 0;
     public RegularBot() {
@@ -10,6 +12,10 @@ public class RegularBot extends Player{
 
     @Override
     public void play() {
-
+        Random random = new Random();
+        int chosen = random.nextInt(0,hand.size());
+        Board.getOnBoard().addFirst(hand.get(chosen));
+        hand.remove(chosen);
+        check();
     }
 }

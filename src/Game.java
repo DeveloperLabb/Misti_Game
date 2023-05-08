@@ -55,4 +55,16 @@ public class Game {
         }
         deck.printInfo();
     }
+    public void play(){
+        int current = 48/(numberOfPlayer*4);
+        for(int a = 0;a<current;a++){
+            deal();
+            for(int b = 0 ;b<4;b++){
+                for(Player player : players){
+                    player.play();
+                }
+            }
+
+        }
+    }
 }

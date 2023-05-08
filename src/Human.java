@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Human extends Player{
     public Human(String name, String surname) {
         super(name, surname);
@@ -7,6 +9,10 @@ public class Human extends Player{
 
     @Override
     public void play() {
-        System.out.println("Human playing");
+        Random random = new Random();
+        int chosen = random.nextInt(0,hand.size());
+        Board.getOnBoard().addFirst(hand.get(chosen));
+        hand.remove(chosen);
+        check();
     }
 }
