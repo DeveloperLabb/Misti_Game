@@ -16,5 +16,4 @@ public class NoviceBot extends Player{
         score=0;
         System.out.println(name+" "+" Added Successfully.");
     }
-
 }

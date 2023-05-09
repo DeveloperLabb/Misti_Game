@@ -7,7 +7,8 @@ public class Game {
     private int numberOfPlayer;
     private int gameMode;//1-Succinct 2-Verbose
     private Deck deck = new Deck();
-    private String[] parameters;
+    private String[] parameters; //Parameterslardan sadece file name boşta.
+
 
     public Game(int numberOfPlayer, int gameMode) {
         this.numberOfPlayer = numberOfPlayer;
@@ -15,29 +16,42 @@ public class Game {
 
     }
     public Game(String[] parameters){
-        this.parameters=parameters;
+        try{
+            Validate.validateNumOfPlayers(parameters[0]);
+            numberOfPlayer=Integer.parseInt(parameters[0]);
+            Validate.validateFile(parameters[1]);
+            for(int a = 0;a<numberOfPlayer;a++){
+                Validate.validateNameAndLevel(parameters[2+a]);
+            }
+            Validate.validateVerbosenessLevel(parameters[parameters.length-1]);
+            gameMode=Integer.valueOf(parameters[parameters.length-1]);
+            System.out.println("Validation completed.");
+            this.parameters=parameters;
+        }catch(IllegalArgumentException e ){
+            System.err.println(e);
+        }catch(ArrayIndexOutOfBoundsException e){
+            System.err.println("Please input valid arguments.Like : \n For two player : \" 2 input.txt Mert-4 Baha-2 2");
+        }
     }
     public void start(){
-        System.out.println("Please input your name : ");
-        Scanner scanner = new Scanner(System.in);
-        String name = scanner.next();
         Player current;
-        current= new Human(name);
-        players.add(current);
-        for(int a = 1;a<numberOfPlayer;a++){
-            System.out.println("Which bot you want to add :\n\t1- Novice Bot\n\t2- Regular Bot\n\t3- Expert Bot");
-            int chosen = scanner.nextInt();
-            switch (chosen){
+        for(int a = 0;a<numberOfPlayer;a++){
+            String[] temp = (parameters[2+a].split("-"));
+            switch (Integer.valueOf(temp[1])){
                 case 1:
-                    current=new NoviceBot("Baha");
+                    current=new NoviceBot(temp[0]);
                     players.add(current);
                     break;
                 case 2:
-                    current=new RegularBot("Aras");
+                    current=new RegularBot(temp[0]);
                     players.add(current);
                     break;
                 case 3:
-                    current=new ExpertBot("Mert");
+                    current=new ExpertBot(temp[0]);
+                    players.add(current);
+                    break;
+                case 4:
+                    current=new Human(temp[0]);
                     players.add(current);
                     break;
             }
@@ -64,7 +78,7 @@ public class Game {
         for(int a = 0;a<current;a++){
             deal();
             System.out.println("Round :"+(a+1));
-            if(gameMode==2){
+            if(gameMode==2){//verbose
                 for(Player players : players){
                     System.out.print(players.toString()+"\t");
                 }
@@ -75,7 +89,7 @@ public class Game {
                     System.out.println();
                     System.out.println("---------------");
                     printBoard();
-                    if(gameMode==2){
+                    if(gameMode==2 && !(player instanceof Human )){//verbose
                         System.out.println(player.name+"\'s cards: "+player.hand);
                     }
                     player.play();
@@ -96,14 +110,18 @@ public class Game {
                     if(player.check()==0){
 
                     }
-
                 }
             }
         }
         if(Board.getOnBoard().size()>0){
             lastCollector.wonHand.addAll(Board.getOnBoard());
             Board.clear();
+            System.out.println(lastCollector.name+" collected remaining cards.");
         }
+        for(Player players : players){
+            System.out.print(players.toString()+"\t");
+        }
+
     }
     public void reset(){
         Board.reset();
