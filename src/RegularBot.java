@@ -1,20 +1,41 @@
+import java.util.ListIterator;
 import java.util.Random;
 
 public class RegularBot extends Player{
-    private static int numberOfRegularBot = 0;
-    public RegularBot() {
-        name="Regular Bot";
-        surname=Integer.toString(numberOfRegularBot);
+    public RegularBot(String name) {
+        super("Regular Bot "+name);
         score=0;
-        numberOfRegularBot++;
-        System.out.println(name+" "+surname+" Added Successfully.");
+        System.out.println(name+" "+" Added Successfully.");
     }
 
     @Override
     public void play() {
-        Random random = new Random();
-        int chosen = random.nextInt(0,hand.size());
-        Board.getOnBoard().addFirst(hand.get(chosen));
+        ListIterator<Card> iterator = hand.listIterator();
+        Card chosen = hand.get(0);
+        while (iterator.hasNext()) {
+            Card curr = iterator.next();
+            if(Board.getOnBoard().size()==0){
+                if(chosen.getRank().equals("J")){
+                    Random random = new Random();
+                    curr = hand.get(random.nextInt(0,hand.size()));
+                }
+            }
+            if (Board.getOnBoard().size() > 0){
+                if (curr.getRank().equals(Board.getTopCard().getRank())) {
+                    if (Board.calculateScore() + curr.getPoint() > 0) {
+                        chosen = curr;
+                    }
+                }
+                else if (curr.getRank().equals("J")) {
+                    if (Board.calculateScore() + curr.getPoint() > 0) {
+                        chosen = curr;
+                }
+            }
+        }
+    }
+        System.out.println(name+" "+chosen+" played");
+        Board.getOnBoard().addFirst(chosen);
         hand.remove(chosen);
     }
+
 }

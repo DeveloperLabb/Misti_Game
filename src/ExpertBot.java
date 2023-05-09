@@ -1,21 +1,17 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class ExpertBot extends Player{
-    private static int numberOfExpertBot = 0;
+    private ArrayList<Integer> stats = new ArrayList<>();
     @Override
     public void play() {
-        Random random = new Random();
-        int chosen = random.nextInt(0,hand.size());
-        Board.getOnBoard().addFirst(hand.get(chosen));
-        hand.remove(chosen);
+
     }
 
-    public ExpertBot() {
-        name="Expert Bot";
-        surname=Integer.toString(numberOfExpertBot);
+    public ExpertBot(String name) {
+        super("Expert Bot "+name);
         score=0;
-        numberOfExpertBot++;
-        System.out.println(name+" "+surname+" Added Successfully.");
-
+        System.out.println(name+" "+" Added Successfully.");
     }
+
 }

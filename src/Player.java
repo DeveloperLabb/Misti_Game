@@ -5,12 +5,11 @@ public abstract class Player implements PlayerAPI {
     protected ArrayList<Card> wonHand = new ArrayList<Card>();
     protected ArrayList<Card> mistiHand = new ArrayList<Card>();
     protected String name;
-    protected String surname;
-    protected int score;
+    protected int score = 0;
 
-    public Player(String name, String surname) {
+
+    public Player(String name) {
         this.name = name;
-        this.surname = surname;
     }
 
     public Player() {
@@ -21,9 +20,14 @@ public abstract class Player implements PlayerAPI {
 
     @Override
     public void calculateScore() {
-
+        score=0;
+        for(Card cards : wonHand){
+            score+=cards.getPoint();
+        }
+        for(Card cards : mistiHand){
+            score+=cards.getPoint()*5;
+        }
     }
-
     @Override
     public void printInfo() {
         System.out.println(toString());
@@ -34,7 +38,6 @@ public abstract class Player implements PlayerAPI {
     public String toString() {
         return "Player{" +
                 "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
                 ", score=" + score +
                 '}';
     }
@@ -50,20 +53,6 @@ public abstract class Player implements PlayerAPI {
             return -1;// Normal Collect
         }
         return 0;//No collect
-
     }
-    /*public void collect(int a){
-        if(a==1){
-            mistiHand.addAll(Board.getOnBoard());
-            Board.clear();
-        }
-        if(a==-1){
-            wonHand.addAll(Board.getOnBoard());
-            Board.clear();
-        }
-        if(a==0){
 
-        }
-    }
-     */
 }
