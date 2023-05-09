@@ -39,7 +39,31 @@ public abstract class Player implements PlayerAPI {
                 '}';
     }
 
-    public void check() {
+    public int check() {
+        if(Board.getOnBoard().size()==2 && Board.getOnBoard().get(1).getRank().equals(Board.getOnBoard().get(0).getRank())){
+            return 1;// Mişti
+        }
+        if (Board.getOnBoard().size()>1 && Board.getOnBoard().get(0).getRank().equals("J")){
+            return -1;// Normal collect
+        }
+        if(Board.getOnBoard().size()>2 && Board.getOnBoard().get(0).getRank().equals(Board.getOnBoard().get(1).getRank())){
+            return -1;// Normal Collect
+        }
+        return 0;//No collect
 
     }
+    /*public void collect(int a){
+        if(a==1){
+            mistiHand.addAll(Board.getOnBoard());
+            Board.clear();
+        }
+        if(a==-1){
+            wonHand.addAll(Board.getOnBoard());
+            Board.clear();
+        }
+        if(a==0){
+
+        }
+    }
+     */
 }

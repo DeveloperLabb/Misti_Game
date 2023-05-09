@@ -13,6 +13,5 @@ public class Human extends Player{
         int chosen = random.nextInt(0,hand.size());
         Board.getOnBoard().addFirst(hand.get(chosen));
         hand.remove(chosen);
-        check();
     }
 }

@@ -57,14 +57,36 @@ public class Game {
     }
     public void play(){
         int current = 48/(numberOfPlayer*4);
+        Player lastCollector = players.get(0);
         for(int a = 0;a<current;a++){
             deal();
             for(int b = 0 ;b<4;b++){
                 for(Player player : players){
                     player.play();
+                    if(player.check()==1){
+                        player.mistiHand.addAll(Board.getOnBoard());
+                        Board.clear();
+                        lastCollector=player;
+                    }
+                    if(player.check()==-1){
+                        player.wonHand.addAll(Board.getOnBoard());
+                        Board.clear();
+                        lastCollector=player;
+                    }
+                    if(player.check()==0){
+
+                    }
                 }
             }
-
+            if(Board.getOnBoard().size()>0){
+                lastCollector.wonHand.addAll(Board.getOnBoard());
+                Board.clear();
+            }
         }
     }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
 }
+//player.collect(player.check());
