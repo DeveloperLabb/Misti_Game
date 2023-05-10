@@ -84,6 +84,7 @@ public class Game {
         deck.printInfo();
     }
     public void play(){
+
         int current = 48/(Integer.valueOf(numberOfPlayer)*4);
         Player lastCollector = players.get(0);
         for(int a = 0;a<current;a++){
@@ -129,10 +130,22 @@ public class Game {
             lastCollector.wonHand.addAll(Board.getOnBoard());
             Board.clear();
             System.out.println(lastCollector.name+" collected remaining cards.");
+            lastCollector.calculateScore();
         }
         for(Player players : players){
             System.out.print(players.toString()+"\t");
         }
+
+        HighScore.Load();
+
+        ScoreSet scores = null;
+        for(int i =0;i<numberOfPlayer;i++){
+             scores = new ScoreSet(players.get(i).name,players.get(i).score);
+             HighScore.AddScore(scores.name,scores.score);
+
+        }
+
+
 
     }
     public void reset(){
