@@ -33,4 +33,10 @@ public class Validate {
             throw new IllegalArgumentException("Number of argument is wrong.It must be a "+(numberOfPlayer+3)+" arguments.");
         }
     }
+    public static void validateHumanInput(String a) throws IllegalArgumentException{
+        boolean validate =a.matches("[0123]");
+        if(!validate){
+            throw new IllegalArgumentException("Please type valid index number");
+        }
+    }
 }

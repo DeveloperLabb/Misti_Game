@@ -31,13 +31,13 @@ public class ExpertBot extends Player{
                         chosen = curr;
                     }
                 }
-
-            }
-            else if (curr.getRank().equals("J")) {
-                if (Board.calculateScore() + curr.getPoint() > 0) {
-                    chosen = curr;
+                else if (curr.getRank().equals("J")) {
+                    if (Board.calculateScore() + curr.getPoint() > 0) {
+                        chosen = curr;
+                    }
                 }
             }
+
         }
         System.out.println(name+" "+chosen+" played");
         Board.getOnBoard().addFirst(chosen);
