@@ -32,7 +32,8 @@ public class Board {
     }
     public static void reset(){
         onBoard.clear();
-        getOnBoard().clear();
+        stats.clear();
+
     }
     public static ArrayList<String> calculateStats(){
         return stats;

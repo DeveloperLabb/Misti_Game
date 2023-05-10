@@ -12,6 +12,13 @@ public class RegularBot extends Player{
     public void play() {
         ListIterator<Card> iterator = hand.listIterator();
         Card chosen = hand.get(0);
+        int minScore = hand.get(0).getPoint();
+        for(Card cards:hand){
+            if(cards.getPoint()<minScore){
+                chosen=cards;
+                minScore=cards.getPoint();
+            }
+        }
         while (iterator.hasNext()) {
             Card curr = iterator.next();
             if(Board.getOnBoard().size()==0){

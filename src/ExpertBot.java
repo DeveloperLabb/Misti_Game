@@ -16,6 +16,7 @@ public class ExpertBot extends Player{
                 freqMax=Collections.frequency(Board.calculateStats(),cards.getRank());
             }
         }
+        //System.out.println(chosen.getRank()+"------"+freqMax);
         while (iterator.hasNext()) {
             Card curr = iterator.next();
             if(Board.getOnBoard().size()==0){
