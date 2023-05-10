@@ -27,9 +27,13 @@ public class Deck {
         }
     }
     private void pullPoints(){
-        File.openFile();
-        File.setPoints();
-        File.closeFile();
+        try{
+            File.openFile();
+            File.setPoints();
+            File.closeFile();
+        }catch(RuntimeException e){
+            System.err.println(e);
+        }
     }
     public void deckCut() {
         int cutPoint = new Random().nextInt(0,deck.size()); // choose a random cut point.

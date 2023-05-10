@@ -6,13 +6,17 @@ import java.util.Scanner;
 
 public class File {
     private static Scanner input;
+    private static String fileName;
+
+    public static void setFileName(String fileName) {
+        File.fileName = fileName;
+    }
 
     public static void openFile() {
         try {
-            input = new Scanner(Paths.get("points.txt"));
+            input = new Scanner(Paths.get(fileName));
         } catch (IOException e) {
-            System.err.println("Error opening file.");
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error opening file.\n This program continue with default card points(1)");
         }
     }
 

@@ -6,7 +6,8 @@ public class Game {
     private ArrayList<Player> players = new ArrayList<Player>();
     private int numberOfPlayer;
     private int gameMode;//1-Succinct 2-Verbose
-    private Deck deck = new Deck();
+    private Deck deck;
+
     private String[] parameters; //Parameterslardan sadece file name boşta.
 
 
@@ -19,7 +20,9 @@ public class Game {
         try{
             Validate.validateNumOfPlayers(parameters[0]);
             numberOfPlayer=Integer.parseInt(parameters[0]);
+            Validate.validateArgumentNumber(parameters,numberOfPlayer);
             Validate.validateFile(parameters[1]);
+            File.setFileName(parameters[1]);
             for(int a = 0;a<numberOfPlayer;a++){
                 Validate.validateNameAndLevel(parameters[2+a]);
             }
@@ -27,10 +30,16 @@ public class Game {
             gameMode=Integer.valueOf(parameters[parameters.length-1]);
             System.out.println("Validation completed.");
             this.parameters=parameters;
+            deck = new Deck();
         }catch(IllegalArgumentException e ){
             System.err.println(e);
+            System.err.println("Please input valid arguments.Like : \n For two player : \"2 input.txt Mert-4 Baha-2 2\"");
+            System.out.println("Shutting Down.Restart again.");
+            System.exit(1);
         }catch(ArrayIndexOutOfBoundsException e){
-            System.err.println("Please input valid arguments.Like : \n For two player : \" 2 input.txt Mert-4 Baha-2 2");
+            System.err.println("Please input valid arguments.Like : \n For two player : \"2 input.txt Mert-4 Baha-2 2\"");
+            System.out.println("Shutting Down.Restart again.");
+            System.exit(1);
         }
     }
     public void start(){
