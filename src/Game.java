@@ -7,7 +7,6 @@ public class Game {
     private int numberOfPlayer;
     private int gameMode;//1-Succinct 2-Verbose
     private Deck deck;
-
     private String[] parameters; //Parameterslardan sadece file name boşta.
 
 
@@ -66,6 +65,9 @@ public class Game {
             }
         }
         deck.deal();
+        for(Card cards : Board.getOnBoard()){
+            Board.calculateStats().add(cards.getRank());
+        }
     }
     public void deal(){
         for(int i = 0; i < 4; i++){
@@ -102,6 +104,7 @@ public class Game {
                         System.out.println(player.name+"\'s cards: "+player.hand);
                     }
                     player.play();
+                    Board.calculateStats().add(Board.getOnBoard().get(0).getRank());
                     if(player.check()==1){
                         player.mistiHand.addAll(Board.getOnBoard());
                         Board.clear();

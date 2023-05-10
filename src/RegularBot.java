@@ -18,6 +18,7 @@ public class RegularBot extends Player{
                 if(chosen.getRank().equals("J")){
                     Random random = new Random();
                     curr = hand.get(random.nextInt(0,hand.size()));
+                    chosen=curr;
                 }
             }
             if (Board.getOnBoard().size() > 0){
@@ -26,16 +27,16 @@ public class RegularBot extends Player{
                         chosen = curr;
                     }
                 }
-                else if (curr.getRank().equals("J")) {
-                    if (Board.calculateScore() + curr.getPoint() > 0) {
-                        chosen = curr;
+
+            }
+            else if (curr.getRank().equals("J")) {
+                if (Board.calculateScore() + curr.getPoint() > 0) {
+                    chosen = curr;
                 }
             }
-        }
     }
         System.out.println(name+" "+chosen+" played");
         Board.getOnBoard().addFirst(chosen);
         hand.remove(chosen);
     }
-
 }
